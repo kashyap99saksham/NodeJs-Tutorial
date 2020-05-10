@@ -1,14 +1,65 @@
-const http=require("http")
+// Creating Server.js file
+// const http = require("./server")
 
-http.createServer((req,res)=>{
-    const body= "my self aditi sinha"
-    const content_length=body.length
+// -----------------------------------------------------
+// Importing Custom Modules
+// var hello = require("./WaysOfCustomModules.js")
+// console.log(hello.sayHello())
+// console.log(hello.sayHII())
 
-    res.writeHead(200, {'Content-Type': 'text/html', 'Content-Length': content_length}); //here we can use /plain as well || if we dont wnna apply html
-    // res.write("<h1>welcome</h1>")
-    // res.write(body)
-    // res.write(req.url)
-    res.end(body)   //Here we can also pass any string | last msg displayed on Screen before end
-}).listen(80,()=>console.log('Running'))
- ////
- setTimeout(function)
+// -----------------------------------------------------
+// using ReadWriteFile.txt File to read and write
+// Asynch..... is Based On The approch in which .. it never wait for anyone... It gives output depend On FCFS.
+// By Default Asynch..  Is Turned-On With Every FileSystem Functions.
+// ON Other Hand- Synchrons Is based On Line By Line (Can Wait for getting The file data)
+
+// var fs = require("fs")
+// var data = fs.readFileSync("./ReadWriteFile.txt","utf8")    
+// console.log(data)   //Prints File data
+// fs.writeFileSync("NewWriteFile.txt",data)       //Creating New File and insert data 
+
+// Below is example of Asyn... [In asyn We have to make callback function]
+var fs = require("fs")
+// fs.readFile("./ReadWriteFile.txt","utf8",(Error,Data)=>{            //Reading Asyn
+//     if(Error)   
+//         throw Error     //Or we can use console.log | console.error(Error)
+//     SendMyData(Data)        // This Method is not giving us data so make another function and send data into that 
+//     // console.log(Data)
+// });
+// // console.log("File Not Completed But I m Running First Coz I m Async.. By default.. :)")
+// // console.log(OurData)
+
+// SendMyData = (Data) => {
+//     fs.writeFile("NewWriteFile.txt",Data,(Error,Data) => {
+//         if(Error)   
+//             throw Error     //Or we can use console.log | console.error(Error)
+//         console.log("Sucess !!")
+//     })
+// }
+// console.log("File Not Completed But I m Writing First Coz I m Async.. By default.. :)")
+
+// To delete any file (Synchronsly Unlink)
+const fs = require('fs')
+
+const path = './file.txt'
+
+try {
+  fs.unlinkSync(path)
+  //file removed
+} catch(err) {
+  console.error(err)
+}
+
+// To delete any file (ASynchronsly Unlink)
+const fs = require('fs')
+
+const path = './file.txt'
+
+fs.unlink(path, (err) => {
+  if (err) {
+    console.error(err)
+    return
+  }
+
+  //file removed
+})
